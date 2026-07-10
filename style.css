@@ -1,0 +1,1379 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@500;600;700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --text: #fff8ed;
+  --soft: rgba(255, 248, 237, .80);
+  --muted: rgba(255, 248, 237, .58);
+  --stroke: rgba(255, 255, 255, .32);
+  --glass: rgba(255, 255, 255, .14);
+  --glass-strong: rgba(255, 255, 255, .24);
+  --deep-glass: rgba(24, 12, 31, .62);
+  --paper: rgba(255, 248, 237, .94);
+  --paper-text: #5b2a40;
+  --rose: #c85a7d;
+  --gold: #f6cf86;
+  --shadow: rgba(18, 9, 28, .46);
+}
+
+body.light {
+  --text: #392335;
+  --soft: rgba(57, 35, 53, .80);
+  --muted: rgba(57, 35, 53, .58);
+  --stroke: rgba(57, 35, 53, .18);
+  --glass: rgba(255, 248, 237, .34);
+  --glass-strong: rgba(255, 248, 237, .58);
+  --deep-glass: rgba(255, 248, 237, .76);
+  --paper: rgba(255, 248, 237, .94);
+  --shadow: rgba(112, 66, 80, .22);
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #0f1026;
+  color: var(--text);
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+button {
+  font-family: inherit;
+}
+
+.app {
+  position: relative;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  padding: max(12px, env(safe-area-inset-top)) 12px max(12px, env(safe-area-inset-bottom));
+  background:
+    radial-gradient(circle at 50% 74%, rgba(255, 229, 158, .78) 0 7%, transparent 20%),
+    radial-gradient(circle at 18% 16%, rgba(255, 255, 255, .13), transparent 25%),
+    radial-gradient(circle at 82% 24%, rgba(255, 145, 184, .18), transparent 28%),
+    linear-gradient(180deg, #11142e 0%, #342550 38%, #99506f 70%, #eeb886 100%);
+  isolation: isolate;
+}
+
+body.light .app {
+  background:
+    radial-gradient(circle at 50% 74%, rgba(255, 235, 169, .72) 0 7%, transparent 20%),
+    radial-gradient(circle at 18% 16%, rgba(255, 255, 255, .22), transparent 25%),
+    radial-gradient(circle at 82% 24%, rgba(255, 145, 184, .18), transparent 28%),
+    linear-gradient(180deg, #f8ead6 0%, #f2cbbd 40%, #ec9aae 72%, #f6d6a1 100%);
+}
+
+.ambient,
+.mist {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ambient-one {
+  width: 360px;
+  height: 360px;
+  left: -130px;
+  top: -110px;
+  border-radius: 50%;
+  background: rgba(255, 213, 138, .26);
+  filter: blur(55px);
+}
+
+.ambient-two {
+  width: 420px;
+  height: 420px;
+  right: -160px;
+  bottom: -160px;
+  border-radius: 50%;
+  background: rgba(255, 128, 168, .20);
+  filter: blur(65px);
+}
+
+.mist {
+  left: -20%;
+  right: -20%;
+  bottom: 7%;
+  height: 22%;
+  background:
+    radial-gradient(ellipse at 35% 55%, rgba(255,255,255,.18), transparent 44%),
+    radial-gradient(ellipse at 74% 45%, rgba(255,255,255,.13), transparent 42%),
+    linear-gradient(90deg, transparent, rgba(255,255,255,.10), transparent);
+  filter: blur(12px);
+}
+
+/* Main phone */
+.phone-card {
+  position: relative;
+  z-index: 5;
+  width: min(420px, 100%);
+  height: min(760px, calc(100dvh - 24px));
+  min-height: 560px;
+  overflow: hidden;
+  border-radius: 38px;
+  border: 1px solid rgba(255,255,255,.38);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.28), rgba(255,255,255,.08) 42%, rgba(255,255,255,.14)),
+    radial-gradient(circle at 18% 10%, rgba(255,255,255,.30), transparent 30%),
+    radial-gradient(circle at 90% 88%, rgba(246,207,134,.20), transparent 35%);
+  box-shadow:
+    0 38px 100px var(--shadow),
+    inset 0 1px 0 rgba(255,255,255,.56),
+    inset 0 -1px 0 rgba(255,255,255,.16);
+  backdrop-filter: blur(28px) saturate(1.35);
+  -webkit-backdrop-filter: blur(28px) saturate(1.35);
+}
+
+body.light .phone-card {
+  background:
+    linear-gradient(145deg, rgba(255,248,237,.60), rgba(255,248,237,.24)),
+    radial-gradient(circle at 18% 10%, rgba(255,255,255,.48), transparent 30%),
+    radial-gradient(circle at 90% 88%, rgba(246,207,134,.24), transparent 35%);
+}
+
+.phone-card::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    linear-gradient(130deg, rgba(255,255,255,.36) 0%, rgba(255,255,255,.10) 28%, transparent 48%),
+    radial-gradient(circle at 20% 0%, rgba(255,255,255,.34), transparent 24%);
+  opacity: .72;
+  z-index: 0;
+}
+
+.top-bar {
+  position: relative;
+  z-index: 30;
+  height: 54px;
+  display: grid;
+  grid-template-columns: 42px 1fr 42px;
+  align-items: center;
+  padding: 0 16px;
+  border-bottom: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+}
+
+.top-bar p {
+  text-align: center;
+  font-size: .82rem;
+  font-weight: 850;
+  letter-spacing: .4px;
+  color: var(--soft);
+}
+
+.circle-btn {
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255,255,255,.32);
+  border-radius: 50%;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.24), rgba(255,255,255,.08));
+  color: var(--text);
+  backdrop-filter: blur(18px) saturate(1.3);
+  -webkit-backdrop-filter: blur(18px) saturate(1.3);
+  cursor: pointer;
+  font-weight: 900;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.36),
+    0 10px 22px rgba(18,9,28,.18);
+}
+
+.music-btn.playing {
+  color: #fff8ed;
+  background:
+    radial-gradient(circle at 32% 25%, rgba(255,255,255,.36), transparent 36%),
+    linear-gradient(145deg, rgba(246,207,134,.40), rgba(200,90,125,.30));
+  box-shadow:
+    0 0 18px rgba(246,207,134,.40),
+    inset 0 1px 0 rgba(255,255,255,.45),
+    0 10px 22px rgba(18,9,28,.18);
+}
+
+/* Pages */
+.page {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 54px;
+  bottom: 0;
+  z-index: 3;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(18px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+
+.page.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* Intro */
+.intro-page {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  text-align: center;
+  align-items: center;
+}
+
+.intro-content {
+  padding-top: clamp(4px, 3dvh, 28px);
+}
+
+.overline {
+  font-size: clamp(.68rem, 2.35vw, .80rem);
+  line-height: 1.25;
+  text-transform: uppercase;
+  letter-spacing: 1.55px;
+  font-weight: 850;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+}
+
+h1 {
+  font-family: "Great Vibes", "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2.75rem, 12.2vw, 4.85rem);
+  line-height: .92;
+  letter-spacing: .2px;
+  margin-bottom: 16px;
+  font-weight: 400;
+  text-shadow: 0 16px 34px rgba(18, 9, 28, .32);
+}
+
+.intro-text {
+  width: min(350px, 94%);
+  margin: 0 auto;
+  color: var(--soft);
+  font-size: clamp(.92rem, 3.35vw, 1.04rem);
+  line-height: 1.58;
+}
+
+.sun-button {
+  position: relative;
+  justify-self: center;
+  width: clamp(128px, 39vw, 180px);
+  height: clamp(128px, 39vw, 180px);
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  background:
+    radial-gradient(circle at 34% 30%, #fff9ca 0 11%, #ffe39a 27%, #f3aa61 64%, #cc5d7e 100%);
+  box-shadow:
+    0 0 34px rgba(255, 229, 155, .88),
+    0 0 92px rgba(243, 170, 97, .72),
+    0 0 142px rgba(204, 93, 126, .40);
+  animation: sunBreathe 2.55s ease-in-out infinite;
+}
+
+.sun-button::before,
+.sun-button::after {
+  content: "";
+  position: absolute;
+  inset: -18px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 245, 198, .45);
+  animation: sunRing 2s ease-out infinite;
+}
+
+.sun-button::after {
+  inset: -32px;
+  animation-delay: .48s;
+  opacity: .6;
+}
+
+@keyframes sunBreathe {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-8px) scale(1.025); }
+}
+
+@keyframes sunRing {
+  from { transform: scale(.94); opacity: .75; }
+  to { transform: scale(1.14); opacity: 0; }
+}
+
+.tap-hint {
+  justify-self: center;
+  width: max-content;
+  max-width: 94%;
+  padding: 10px 16px;
+  margin-bottom: 4px;
+  border-radius: 999px;
+  border: 1px solid var(--stroke);
+  background: rgba(255,255,255,.10);
+  color: var(--soft);
+  backdrop-filter: blur(14px);
+  font-size: .9rem;
+  font-weight: 850;
+  animation: hintMove 1.35s ease-in-out infinite;
+}
+
+@keyframes hintMove {
+  50% { transform: translateY(-5px); }
+}
+
+/* Card page */
+.card-page {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  row-gap: 12px;
+}
+
+.card-heading {
+  min-height: 88px;
+  display: grid;
+  align-content: center;
+  text-align: center;
+  padding: 0 6px;
+}
+
+.card-heading .overline {
+  margin-bottom: 7px;
+}
+
+.card-heading h2 {
+  width: min(330px, 94%);
+  margin: 0 auto;
+  font-size: clamp(1.28rem, 5.1vw, 1.82rem);
+  line-height: 1.08;
+  font-weight: 700;
+  color: var(--text);
+  text-shadow: 0 12px 28px rgba(18,9,28,.22);
+}
+
+.stage {
+  position: relative;
+  min-height: 0;
+  border-radius: 30px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.05);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.20);
+}
+
+/* Photo layer */
+.photo-panel {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 30px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.34);
+  background: linear-gradient(135deg, rgba(242,167,188,.55), rgba(245,206,130,.32));
+  opacity: .16;
+  transform: scale(.985);
+  filter: blur(3px) saturate(.9);
+  transition: opacity .75s ease, filter .75s ease, transform .75s ease;
+  pointer-events: none;
+}
+
+.stage.revealed .photo-panel {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0) saturate(1.02);
+  pointer-events: auto;
+}
+
+.photo-panel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 54% 35%;
+  display: block;
+}
+
+.photo-shade {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 52%;
+  background: linear-gradient(180deg, transparent, rgba(18, 9, 28, .58) 55%, rgba(18, 9, 28, .74));
+  pointer-events: none;
+}
+
+body.light .photo-shade {
+  background: linear-gradient(180deg, transparent, rgba(255, 248, 237, .38) 50%, rgba(255, 248, 237, .76));
+}
+
+.final-overlay {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  z-index: 3;
+  display: grid;
+  gap: 9px;
+  justify-items: center;
+  padding: 13px 14px;
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,.30);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.22), rgba(24, 12, 31, .54)),
+    rgba(24, 12, 31, .52);
+  backdrop-filter: blur(22px) saturate(1.35);
+  -webkit-backdrop-filter: blur(22px) saturate(1.35);
+  box-shadow:
+    0 18px 38px rgba(24, 10, 30, .25),
+    inset 0 1px 0 rgba(255,255,255,.32);
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+  transition: opacity .6s ease .18s, transform .6s ease .18s;
+}
+
+.stage.revealed .final-overlay {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+body.light .final-overlay {
+  background: rgba(255, 248, 237, .76);
+}
+
+.final-overlay p {
+  width: min(310px, 100%);
+  color: #fff9ea;
+  text-align: center;
+  line-height: 1.38;
+  font-size: clamp(.82rem, 3.05vw, .92rem);
+  font-weight: 690;
+  overflow-wrap: break-word;
+}
+
+body.light .final-overlay p {
+  color: #392335;
+}
+
+.final-overlay button {
+  width: min(238px, 92%);
+  min-height: 40px;
+  border: 1px solid rgba(255,255,255,.36);
+  border-radius: 999px;
+  padding: 9px 13px;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.26), rgba(255,255,255,.08));
+  color: #fff9ea;
+  font-weight: 850;
+  cursor: pointer;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.34),
+    0 10px 22px rgba(18,9,28,.18);
+}
+
+body.light .final-overlay button {
+  color: #392335;
+  border-color: rgba(57,35,53,.18);
+}
+
+/* Envelope and letter */
+.envelope-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  transition: opacity .65s ease, transform .65s ease;
+}
+
+.stage.revealed .envelope-layer {
+  opacity: 0;
+  transform: translateY(-20px) scale(.96);
+  pointer-events: none;
+}
+
+.envelope {
+  position: absolute;
+  left: 50%;
+  bottom: 26px;
+  translate: -50% 0;
+  width: min(310px, 88%);
+  height: 158px;
+  border: 0;
+  cursor: pointer;
+  border-radius: 0 0 24px 24px;
+  background: linear-gradient(135deg, #f3aec4, #fff0bd);
+  box-shadow:
+    0 24px 55px rgba(25, 10, 31, .34),
+    inset 0 1px 0 rgba(255,255,255,.48);
+  z-index: 8;
+}
+
+.flap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 110px;
+  z-index: 6;
+  transform-origin: top;
+  transition: transform .82s cubic-bezier(.22,.85,.22,1);
+  background: linear-gradient(135deg, #fff1bf, #f0a6bd);
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+}
+
+.front {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  border-radius: 0 0 24px 24px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.28), rgba(189,84,116,.12)),
+    linear-gradient(135deg, #f0a8be, #ffe9b0);
+  clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%);
+}
+
+.envelope::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  border-radius: 0 0 24px 24px;
+  background: linear-gradient(135deg, rgba(255,255,255,.48), rgba(245,206,130,.16));
+  clip-path: polygon(0 100%, 50% 48%, 100% 100%);
+}
+
+.envelope.open {
+  z-index: 4;
+  pointer-events: none;
+}
+
+.envelope.open .flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.envelope-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 190px;
+  translate: -50% 0;
+  width: max-content;
+  max-width: 92%;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--stroke);
+  background: rgba(255,255,255,.10);
+  backdrop-filter: blur(14px);
+  color: var(--soft);
+  font-size: .88rem;
+  font-weight: 850;
+  z-index: 9;
+  pointer-events: none;
+  animation: hintMove 1.3s ease-in-out infinite;
+}
+
+.letter {
+  position: absolute;
+  left: 50%;
+  top: calc(100% - 188px);
+  translate: -50% 0;
+  z-index: 3;
+  width: min(318px, 90%);
+  max-height: calc(100% - 64px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 17px 16px 16px;
+  border-radius: 24px;
+  text-align: left;
+  color: var(--paper-text);
+  background:
+    radial-gradient(circle at 10% 0%, rgba(255,255,255,.85), transparent 28%),
+    linear-gradient(180deg, rgba(255,255,255,.94), rgba(255,248,237,.88));
+  backdrop-filter: blur(22px) saturate(1.22);
+  -webkit-backdrop-filter: blur(22px) saturate(1.22);
+  border: 1px solid rgba(255,255,255,.70);
+  box-shadow: 0 24px 55px rgba(25,10,31,.28);
+  opacity: 0;
+  transform: scale(.965);
+  transition:
+    top .7s cubic-bezier(.2,.82,.2,1),
+    opacity .45s ease,
+    transform .7s cubic-bezier(.2,.82,.2,1);
+  user-select: none;
+  touch-action: none;
+  cursor: grab;
+  pointer-events: none;
+}
+
+.letter.visible {
+  top: 14px;
+  z-index: 12;
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.letter.swiped {
+  opacity: 0;
+  transform: translateY(-390px) rotate(-3deg) scale(.98);
+  pointer-events: none;
+  transition: transform .55s cubic-bezier(.2,.82,.2,1), opacity .35s ease;
+}
+
+.letter-label {
+  display: inline-flex;
+  padding: 6px 11px;
+  border-radius: 999px;
+  background: rgba(189,84,116,.10);
+  color: #9d4662;
+  font-size: .72rem;
+  line-height: 1;
+  font-weight: 850;
+  margin-bottom: 10px;
+}
+
+.letter h3 {
+  font-family: "Great Vibes", "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.62rem, 6.6vw, 2.05rem);
+  color: #8e3f5f;
+  margin-bottom: 8px;
+  line-height: .95;
+  font-weight: 400;
+}
+
+.letter p {
+  font-size: clamp(.80rem, 3.08vw, .90rem);
+  line-height: 1.48;
+  margin-bottom: 8px;
+  overflow-wrap: break-word;
+}
+
+.reveal-button {
+  width: 100%;
+  min-height: 40px;
+  margin-top: 9px;
+  border: 1px solid rgba(149,68,96,.16);
+  border-radius: 999px;
+  cursor: pointer;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.42), rgba(189,84,116,.10));
+  color: #954460;
+  font-weight: 900;
+  font-size: .78rem;
+  padding: 9px 11px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.58);
+}
+
+/* Toast / hearts */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  z-index: 90;
+  width: max-content;
+  max-width: 92vw;
+  padding: 12px 15px;
+  border-radius: 999px;
+  border: 1px solid var(--stroke);
+  background: var(--deep-glass);
+  backdrop-filter: blur(14px);
+  color: var(--text);
+  font-size: .86rem;
+  font-weight: 800;
+  text-align: center;
+  opacity: 0;
+  transform: translate(-50%, 30px);
+  pointer-events: none;
+  transition: opacity .32s ease, transform .32s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.petal {
+  position: fixed;
+  top: -40px;
+  z-index: 80;
+  pointer-events: none;
+  animation: petalFall linear forwards;
+  filter: drop-shadow(0 7px 10px rgba(24,10,30,.18));
+}
+
+@keyframes petalFall {
+  to {
+    transform: translateY(110dvh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Small screens */
+@media (max-height: 700px) {
+  .app {
+    padding: 10px 12px;
+  }
+
+  .phone-card {
+    height: calc(100dvh - 20px);
+    min-height: 535px;
+    border-radius: 32px;
+  }
+
+  .top-bar {
+    height: 48px;
+  }
+
+  .page {
+    top: 48px;
+    padding: 14px;
+  }
+
+  .card-page {
+    row-gap: 9px;
+  }
+
+  .card-heading {
+    min-height: 74px;
+  }
+
+  .card-heading h2 {
+    font-size: clamp(1.05rem, 4.35vw, 1.38rem);
+    line-height: 1.08;
+  }
+
+  .overline {
+    font-size: .66rem;
+    margin-bottom: 7px;
+  }
+
+  h1 {
+    font-size: clamp(2.45rem, 11.3vw, 4.05rem);
+  }
+
+  .intro-text {
+    line-height: 1.45;
+  }
+
+  .envelope {
+    height: 142px;
+    bottom: 18px;
+  }
+
+  .flap {
+    height: 98px;
+  }
+
+  .envelope-hint {
+    bottom: 168px;
+  }
+
+  .letter {
+    top: calc(100% - 172px);
+    max-height: calc(100% - 46px);
+    padding: 14px 13px 13px;
+  }
+
+  .letter.visible {
+    top: 9px;
+  }
+
+  .letter h3 {
+    font-size: clamp(1.48rem, 6.2vw, 1.88rem);
+  }
+
+  .letter p {
+    line-height: 1.35;
+    margin-bottom: 7px;
+  }
+
+  .final-overlay {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    padding: 10px;
+  }
+
+  .final-overlay p {
+    line-height: 1.30;
+  }
+}
+
+@media (max-width: 360px) {
+  .page {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .letter,
+  .envelope {
+    width: 92%;
+  }
+}
+
+
+/* ---------- FRONT PAGE FIT FIX ----------
+   This only adjusts layout and font sizes.
+   Wording/content is unchanged.
+----------------------------------------- */
+
+.intro-page {
+  grid-template-rows: auto minmax(145px, 1fr) auto;
+  row-gap: 12px;
+  align-items: stretch;
+}
+
+.intro-content {
+  padding-top: clamp(2px, 1.6dvh, 18px);
+  align-self: start;
+}
+
+.intro-content .overline {
+  font-size: clamp(.62rem, 2.1vw, .74rem);
+  line-height: 1.22;
+  letter-spacing: 1.25px;
+  margin-bottom: 9px;
+}
+
+.intro-content h1 {
+  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  font-size: clamp(1.9rem, 8.2vw, 3.35rem);
+  line-height: 1.02;
+  letter-spacing: .2px;
+  margin-bottom: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.intro-text {
+  width: min(342px, 94%);
+  font-size: clamp(.84rem, 3vw, .96rem);
+  line-height: 1.48;
+}
+
+.sun-button {
+  align-self: center;
+  width: clamp(112px, 32vw, 158px);
+  height: clamp(112px, 32vw, 158px);
+}
+
+.sun-button::before {
+  inset: -14px;
+}
+
+.sun-button::after {
+  inset: -25px;
+}
+
+.tap-hint {
+  align-self: end;
+  margin-bottom: 0;
+  padding: 9px 14px;
+  font-size: .84rem;
+}
+
+/* Make the phone use available mobile height more safely */
+.phone-card {
+  height: min(760px, calc(100dvh - 18px));
+}
+
+/* Extra small screens */
+@media (max-height: 700px) {
+  .intro-page {
+    grid-template-rows: auto minmax(116px, 1fr) auto;
+    row-gap: 8px;
+  }
+
+  .intro-content {
+    padding-top: 0;
+  }
+
+  .intro-content .overline {
+    font-size: .58rem;
+    line-height: 1.18;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+  }
+
+  .intro-content h1 {
+    font-size: clamp(1.58rem, 7.2vw, 2.55rem);
+    line-height: 1.02;
+    margin-bottom: 8px;
+  }
+
+  .intro-text {
+    font-size: clamp(.76rem, 2.75vw, .86rem);
+    line-height: 1.38;
+    width: min(320px, 96%);
+  }
+
+  .sun-button {
+    width: clamp(94px, 28vw, 128px);
+    height: clamp(94px, 28vw, 128px);
+  }
+
+  .sun-button::before {
+    inset: -10px;
+  }
+
+  .sun-button::after {
+    inset: -18px;
+  }
+
+  .tap-hint {
+    padding: 8px 12px;
+    font-size: .78rem;
+  }
+}
+
+@media (max-height: 600px) {
+  .phone-card {
+    min-height: 500px;
+  }
+
+  .top-bar {
+    height: 44px;
+  }
+
+  .page {
+    top: 44px;
+    padding: 12px;
+  }
+
+  .intro-page {
+    grid-template-rows: auto minmax(96px, 1fr) auto;
+  }
+
+  .intro-content h1 {
+    font-size: clamp(1.42rem, 6.7vw, 2.25rem);
+  }
+
+  .intro-text {
+    font-size: .74rem;
+    line-height: 1.32;
+  }
+
+  .sun-button {
+    width: 88px;
+    height: 88px;
+  }
+}
+
+
+/* ---------- ROMANTIC FONT RESTORE FIX ----------
+   Keeps the title romantic.
+   Only reduces size and spacing so it fits.
+----------------------------------------------- */
+
+.intro-content h1 {
+  font-family: "Great Vibes", "Cormorant Garamond", Georgia, serif !important;
+  font-size: clamp(2.35rem, 9.8vw, 3.95rem) !important;
+  line-height: .90 !important;
+  letter-spacing: .2px !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  margin-bottom: 12px !important;
+}
+
+@media (max-height: 700px) {
+  .intro-content h1 {
+    font-family: "Great Vibes", "Cormorant Garamond", Georgia, serif !important;
+    font-size: clamp(2.05rem, 8.9vw, 3.25rem) !important;
+    line-height: .90 !important;
+    margin-bottom: 8px !important;
+    text-transform: none !important;
+  }
+}
+
+@media (max-height: 600px) {
+  .intro-content h1 {
+    font-family: "Great Vibes", "Cormorant Garamond", Georgia, serif !important;
+    font-size: clamp(1.88rem, 8.2vw, 2.75rem) !important;
+    line-height: .90 !important;
+    text-transform: none !important;
+  }
+}
+
+
+/* ---------- LONG HEART MESSAGE TOAST FIX ----------
+   Keeps the exact love message.
+   Makes the popup wrap neatly without overflowing.
+--------------------------------------------------- */
+
+.toast {
+  width: min(340px, 88vw) !important;
+  max-width: 88vw !important;
+  white-space: normal !important;
+  overflow-wrap: break-word !important;
+  word-break: normal !important;
+  text-align: center !important;
+  line-height: 1.35 !important;
+  border-radius: 24px !important;
+  padding: 13px 16px !important;
+  font-size: clamp(.78rem, 3.1vw, .90rem) !important;
+  letter-spacing: .1px !important;
+}
+
+@media (max-height: 620px) {
+  .toast {
+    bottom: calc(10px + env(safe-area-inset-bottom)) !important;
+    width: min(320px, 88vw) !important;
+    font-size: clamp(.72rem, 2.8vw, .82rem) !important;
+    line-height: 1.28 !important;
+    padding: 11px 13px !important;
+  }
+}
+
+
+/* =========================================================
+   FINAL FRONT PAGE CENTER FIX
+   - Keeps the romantic Great Vibes font
+   - Only reduces font size
+   - Centers all wording properly
+   - Prevents title/text from going out of the phone screen
+   ========================================================= */
+
+.intro-page {
+  display: grid !important;
+  grid-template-rows: auto 1fr auto !important;
+  align-items: center !important;
+  justify-items: center !important;
+  text-align: center !important;
+  gap: 10px !important;
+  padding: 16px 16px 18px !important;
+}
+
+.intro-content {
+  width: 100% !important;
+  max-width: 350px !important;
+  padding-top: 4px !important;
+  align-self: start !important;
+  justify-self: center !important;
+  text-align: center !important;
+}
+
+.intro-content .overline {
+  width: 100% !important;
+  max-width: 320px !important;
+  margin: 0 auto 8px !important;
+  text-align: center !important;
+  font-size: clamp(.56rem, 1.95vw, .68rem) !important;
+  line-height: 1.22 !important;
+  letter-spacing: .9px !important;
+  overflow-wrap: break-word !important;
+}
+
+.intro-content h1 {
+  width: 100% !important;
+  max-width: 330px !important;
+  margin: 0 auto 10px !important;
+  text-align: center !important;
+  font-family: "Great Vibes", "Cormorant Garamond", Georgia, serif !important;
+  font-size: clamp(1.95rem, 7.6vw, 3.05rem) !important;
+  line-height: .98 !important;
+  letter-spacing: .15px !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  white-space: normal !important;
+  overflow-wrap: normal !important;
+  text-shadow: 0 12px 28px rgba(18, 9, 28, .34) !important;
+}
+
+.intro-text {
+  width: 100% !important;
+  max-width: 318px !important;
+  margin: 0 auto !important;
+  text-align: center !important;
+  font-size: clamp(.78rem, 2.75vw, .90rem) !important;
+  line-height: 1.42 !important;
+  overflow-wrap: break-word !important;
+}
+
+.sun-button {
+  align-self: center !important;
+  justify-self: center !important;
+  width: clamp(104px, 30vw, 140px) !important;
+  height: clamp(104px, 30vw, 140px) !important;
+  margin: 0 auto !important;
+}
+
+.sun-button::before {
+  inset: -11px !important;
+}
+
+.sun-button::after {
+  inset: -20px !important;
+}
+
+.tap-hint {
+  align-self: end !important;
+  justify-self: center !important;
+  margin: 0 auto !important;
+  padding: 8px 13px !important;
+  font-size: .80rem !important;
+  text-align: center !important;
+}
+
+/* Normal phone height */
+.phone-card {
+  height: min(760px, calc(100dvh - 18px)) !important;
+}
+
+/* Small phone height */
+@media (max-height: 700px) {
+  .intro-page {
+    gap: 7px !important;
+    padding: 12px 14px 14px !important;
+  }
+
+  .intro-content {
+    max-width: 330px !important;
+    padding-top: 0 !important;
+  }
+
+  .intro-content .overline {
+    font-size: .52rem !important;
+    line-height: 1.16 !important;
+    letter-spacing: .7px !important;
+    margin-bottom: 5px !important;
+  }
+
+  .intro-content h1 {
+    max-width: 305px !important;
+    font-size: clamp(1.62rem, 6.8vw, 2.45rem) !important;
+    line-height: .98 !important;
+    margin-bottom: 6px !important;
+  }
+
+  .intro-text {
+    max-width: 305px !important;
+    font-size: clamp(.70rem, 2.55vw, .80rem) !important;
+    line-height: 1.30 !important;
+  }
+
+  .sun-button {
+    width: clamp(82px, 24vw, 112px) !important;
+    height: clamp(82px, 24vw, 112px) !important;
+  }
+
+  .sun-button::before {
+    inset: -8px !important;
+  }
+
+  .sun-button::after {
+    inset: -15px !important;
+  }
+
+  .tap-hint {
+    padding: 7px 11px !important;
+    font-size: .72rem !important;
+  }
+}
+
+/* Very small phone height */
+@media (max-height: 600px) {
+  .phone-card {
+    min-height: 500px !important;
+  }
+
+  .intro-page {
+    padding: 10px 12px 12px !important;
+    gap: 5px !important;
+  }
+
+  .intro-content h1 {
+    max-width: 285px !important;
+    font-size: clamp(1.42rem, 6.2vw, 2.05rem) !important;
+    line-height: .98 !important;
+    margin-bottom: 5px !important;
+  }
+
+  .intro-text {
+    max-width: 292px !important;
+    font-size: .68rem !important;
+    line-height: 1.24 !important;
+  }
+
+  .sun-button {
+    width: 76px !important;
+    height: 76px !important;
+  }
+}
+
+
+/* =========================================================
+   READABLE ROMANTIC FONT FINAL FIX
+   - Changes only font style and sizing
+   - Wording/content unchanged
+   - Easier to read than curly script font
+   ========================================================= */
+
+.intro-content h1 {
+  font-family: "Playfair Display", "Cormorant Garamond", Georgia, serif !important;
+  font-size: clamp(1.72rem, 6.55vw, 2.72rem) !important;
+  line-height: 1.08 !important;
+  letter-spacing: .45px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  text-align: center !important;
+  margin: 0 auto 10px !important;
+  max-width: 330px !important;
+}
+
+.card-heading h2 {
+  font-family: "Playfair Display", "Cormorant Garamond", Georgia, serif !important;
+  font-weight: 700 !important;
+  letter-spacing: .2px !important;
+}
+
+.letter h3 {
+  font-family: "Playfair Display", "Cormorant Garamond", Georgia, serif !important;
+  font-size: clamp(1.25rem, 5vw, 1.62rem) !important;
+  line-height: 1.08 !important;
+  font-weight: 700 !important;
+  letter-spacing: .2px !important;
+}
+
+@media (max-height: 700px) {
+  .intro-content h1 {
+    font-size: clamp(1.42rem, 5.85vw, 2.22rem) !important;
+    line-height: 1.06 !important;
+    margin-bottom: 7px !important;
+    max-width: 305px !important;
+  }
+
+  .letter h3 {
+    font-size: clamp(1.14rem, 4.6vw, 1.42rem) !important;
+  }
+}
+
+@media (max-height: 600px) {
+  .intro-content h1 {
+    font-size: clamp(1.22rem, 5.35vw, 1.88rem) !important;
+    line-height: 1.05 !important;
+    max-width: 285px !important;
+  }
+}
+
+
+/* =========================================================
+   FINAL LETTER ALIGNMENT FIX
+   - New longer letter fits neatly
+   - No overlapping
+   - Letter scrolls only if phone screen is very small
+   - Readable romantic font kept
+   ========================================================= */
+
+.letter {
+  width: min(326px, 92%) !important;
+  max-height: calc(100% - 44px) !important;
+  padding: 15px 15px 14px !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain !important;
+  scrollbar-width: thin !important;
+}
+
+.letter.visible {
+  top: 10px !important;
+}
+
+.letter-label {
+  margin-bottom: 8px !important;
+  font-size: .68rem !important;
+  padding: 5px 10px !important;
+}
+
+.letter h3 {
+  font-family: "Playfair Display", "Cormorant Garamond", Georgia, serif !important;
+  font-size: clamp(1.16rem, 4.7vw, 1.46rem) !important;
+  line-height: 1.06 !important;
+  margin-bottom: 8px !important;
+}
+
+.letter p {
+  font-size: clamp(.74rem, 2.86vw, .84rem) !important;
+  line-height: 1.38 !important;
+  margin-bottom: 8px !important;
+  text-align: left !important;
+  overflow-wrap: break-word !important;
+}
+
+.reveal-button {
+  min-height: 38px !important;
+  margin-top: 7px !important;
+  font-size: .72rem !important;
+  line-height: 1.22 !important;
+  padding: 9px 10px !important;
+}
+
+/* Keep envelope behind the longer letter properly */
+.envelope {
+  bottom: 22px !important;
+}
+
+.envelope-hint {
+  bottom: 186px !important;
+}
+
+@media (max-height: 700px) {
+  .letter {
+    width: min(324px, 92%) !important;
+    max-height: calc(100% - 34px) !important;
+    padding: 12px 12px 12px !important;
+  }
+
+  .letter.visible {
+    top: 7px !important;
+  }
+
+  .letter h3 {
+    font-size: clamp(1.06rem, 4.35vw, 1.30rem) !important;
+    margin-bottom: 6px !important;
+  }
+
+  .letter p {
+    font-size: clamp(.68rem, 2.62vw, .76rem) !important;
+    line-height: 1.30 !important;
+    margin-bottom: 6px !important;
+  }
+
+  .letter-label {
+    font-size: .62rem !important;
+    margin-bottom: 6px !important;
+  }
+
+  .reveal-button {
+    min-height: 34px !important;
+    margin-top: 5px !important;
+    font-size: .66rem !important;
+    padding: 7px 8px !important;
+  }
+}
+
+@media (max-height: 600px) {
+  .letter {
+    max-height: calc(100% - 26px) !important;
+    padding: 10px 11px !important;
+  }
+
+  .letter.visible {
+    top: 5px !important;
+  }
+
+  .letter p {
+    font-size: .64rem !important;
+    line-height: 1.25 !important;
+    margin-bottom: 5px !important;
+  }
+
+  .letter h3 {
+    font-size: 1.05rem !important;
+  }
+}

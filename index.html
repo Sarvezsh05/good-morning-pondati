@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>GOOD MORNING MY DEAR PONDATI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main class="app">
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+    <div class="mist"></div>
+
+    <section class="phone-card">
+      <header class="top-bar">
+        <button class="circle-btn music-btn" id="musicButton" type="button" aria-label="Play or pause song">
+          <span id="musicIcon">♪</span>
+        </button>
+
+        <p>For My Pondati</p>
+
+        <button class="circle-btn theme-btn" id="themeToggle" type="button" aria-label="Toggle light and dark mode">
+          <span id="themeIcon">☾</span>
+        </button>
+      </header>
+
+      <!-- SCREEN 1: SUNRISE -->
+      <section class="page intro-page active" id="introPage">
+        <div class="intro-content">
+          <p class="overline">A quiet sunrise made only for you baby maa</p>
+          <h1>GOOD MORNING<br>MY DEAR PONDATI</h1>
+          <p class="intro-text">
+            Tap the morning sun, maa. I kept a letter inside this sunrise,
+            because even from far away, my heart still wakes up with you.
+          </p>
+        </div>
+
+        <button class="sun-button" id="sunButton" type="button" aria-label="Tap the sun"></button>
+
+        <p class="tap-hint">Tap the sun to open</p>
+      </section>
+
+      <!-- SCREEN 2: ENVELOPE / LETTER / PHOTO -->
+      <section class="page card-page" id="cardPage">
+        <header class="card-heading">
+          <p class="overline">For my one and only wife, my heart misses</p>
+          <h2>A letter hidden inside the morning</h2>
+        </header>
+
+        <section class="stage" id="stage">
+          <!-- PHOTO BEHIND LETTER -->
+          <div class="photo-panel">
+            <img src="wife-photo.jpg" alt="Our memory" />
+            <div class="photo-shade"></div>
+
+            <div class="final-overlay">
+              <p>
+                Every morning feels softer when I remember that my heart belongs to you.
+              </p>
+              <button type="button" id="heartButton">Press if you miss me too</button>
+            </div>
+          </div>
+
+          <!-- ENVELOPE + LETTER -->
+          <div class="envelope-layer" id="envelopeLayer">
+            <button class="envelope" id="envelope" type="button" aria-label="Tap the envelope">
+              <span class="flap"></span>
+              <span class="front"></span>
+            </button>
+
+            <article class="letter" id="letter">
+              <p class="letter-label">Good morning letter</p>
+              <h3>My Dear Pondati,</h3>
+
+              <p>
+                Good Morning Preethu Kutty. I may not be beside you today maa, but one thing you must always know maa
+                I will never leave you. No matter what happens, no matter how far we are, my heart will always stay with you maa.
+              </p>
+
+              <p>
+                I will always be with you in your heart and in your mind maa. Even when you cannot see me beside you,
+                please remember that I am still loving you, missing you, thinking about you, and holding you close in my heart every single day.
+              </p>
+
+              <p>
+                I LOVEEEE YOUUU SOOO SOO MUCHH MAA. Words really cannot explain how much you mean to me.
+                I miss you terriblyyy, more than anything in this world, and my heart is always waiting for the day I can be beside you again,
+                hold your hand, see your smile, and never let you feel alone maa.
+              </p>
+
+              <button class="reveal-button" id="revealButton" type="button">
+                Swipe up or tap here to reveal the memory
+              </button>
+            </article>
+
+            <p class="envelope-hint" id="envelopeHint">Tap the envelope</p>
+          </div>
+        </section>
+      </section>
+    </section>
+
+    <audio id="loveSong" src="morning-song.mpeg" preload="auto" loop></audio>
+    <div class="toast" id="toast">Good Morning Maa</div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
